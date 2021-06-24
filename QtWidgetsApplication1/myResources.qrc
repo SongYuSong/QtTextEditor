@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/myimages">
+        <file>images/file-add.png</file>
+        <file>images/file-open.png</file>
+        <file>images/save.png</file>
+        <file>images/search.png</file>
+        <file>images/baocun.png</file>
+        <file>images/chazhao.png</file>
+        <file>images/chexiao.png</file>
+        <file>images/fuzhi.png</file>
+        <file>images/guanbi.png</file>
+        <file>images/jianqie.png</file>
+        <file>images/lingcunwei.png</file>
+        <file>images/niantie.png</file>
+        <file>images/shuoming.png</file>
+        <file>images/tuichu.png</file>
+    </qresource>
+</RCC>
