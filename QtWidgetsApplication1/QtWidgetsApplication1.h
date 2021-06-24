@@ -8,6 +8,7 @@
 #include <QCloseEvent>
 #include <QLineEdit>
 #include <QDialog>
+#include <QLabel>
 
 #include "ui_QtWidgetsApplication1.h"
 
@@ -17,6 +18,7 @@ class QtWidgetsApplication1 : public QMainWindow
 
 public:
     QtWidgetsApplication1(QWidget* parent = Q_NULLPTR);
+    ~QtWidgetsApplication1();
 
     void newfile();
     bool is_save();
@@ -24,6 +26,19 @@ public:
     bool save_as();
     bool savefile(const QString& filename);
     bool loadfile(const QString& filename);
+
+private:
+    Ui::QtWidgetsApplication1Class ui;
+    
+    QLineEdit* findLineEdit;
+    QDialog* findDlg;
+    QPushButton* btn;
+    QVBoxLayout* layout;
+
+    QLabel* statusLable;
+    
+    bool is_unsasved;
+    QString file_path;
 
 private slots:
     void on_action_New_triggered();
@@ -39,11 +54,9 @@ private slots:
     void on_action_Copy_triggered();
     void on_action_Paste_triggered();
 
-private:
-    Ui::QtWidgetsApplication1Class ui;
+    void on_action_Search_triggered();
 
-    bool is_unsasved;
-    QString file_path;
+    void showFindText();
 
 protected:
     void closeevent(QCloseEvent* event);

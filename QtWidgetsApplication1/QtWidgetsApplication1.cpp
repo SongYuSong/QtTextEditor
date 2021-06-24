@@ -12,6 +12,31 @@ QtWidgetsApplication1::QtWidgetsApplication1(QWidget *parent)
     file_path = tr("未命名.txt");
     ui.setupUi(this);
     setWindowTitle(file_path);
+
+    findDlg = new QDialog(this);
+    findDlg->setWindowTitle(tr("查找"));
+    findLineEdit = new QLineEdit(findDlg);
+    btn = new QPushButton(tr("查找下一个"), findDlg);
+    layout = new QVBoxLayout(findDlg);
+    layout->addWidget(findLineEdit);
+    layout->addWidget(btn);
+    connect(btn, SIGNAL(clicked()), this, SLOT(showFindText()));
+
+    statusLable = new QLabel;
+    //statusLable->setFrameShape(QFrame::NoFrame);
+    statusLable->setText(tr("<a href=\"https://www.baidu.com\">baidu.com</a>"));
+    //statusLable->setTextFormat(Qt::AutoText);
+    statusLable->setOpenExternalLinks(true);
+    ui.statusBar->addPermanentWidget(statusLable);
+}
+
+QtWidgetsApplication1::~QtWidgetsApplication1()
+{
+    delete layout;
+    delete btn;
+    delete findLineEdit;
+    delete findDlg;
+    delete statusLable;
 }
 
 void QtWidgetsApplication1::newfile()
@@ -165,6 +190,21 @@ void QtWidgetsApplication1::on_action_Copy_triggered()
 void QtWidgetsApplication1::on_action_Paste_triggered()
 {
     ui.textEdit->paste();
+}
+
+void QtWidgetsApplication1::on_action_Search_triggered()
+{
+    findDlg->show();
+}
+
+void QtWidgetsApplication1::showFindText()
+{
+    QString str = findLineEdit->text();
+    if (!ui.textEdit->find(str, QTextDocument::FindBackward))
+    {
+        QMessageBox::warning(this, tr("查找"),
+            tr("找不到%1").arg(str));
+    }
 }
 
 void QtWidgetsApplication1::closeevent(QCloseEvent* event)
